@@ -17,4 +17,4 @@ Welcome to the **Snacks Corner**! This is a simple and interactive web applicati
 ## How to Use
 1. Clone the repository to your local machine:
    ```bash
-   git clone https://github.com/your-username/snacks-order.git
+   git clone https://ganesh4311.github.io/snacks-order.github.io/

@@ -9,6 +9,23 @@ function addToCart(itemName, itemPrice) {
     updateCartDisplay();
 }
 
+function searchSnacks() {
+    const searchValue = document.getElementById('search').value.toLowerCase();
+    const products = document.querySelectorAll('.product');
+    products.forEach(product => {
+        const snackName = product.querySelector('h3').textContent.toLowerCase();
+        product.style.display = snackName.includes(searchValue) ? '' : 'none';
+    });
+}
+
+function addToCart(itemName, itemPrice, quantityId) {
+    const quantity = document.getElementById(quantityId).value;
+    const totalItemPrice = itemPrice * quantity;
+
+    cart.push({ name: itemName, price: totalItemPrice, quantity });
+    updateCartDisplay();
+}
+
 function updateCartDisplay() {
     const cartItems = document.getElementById('cart-items');
     cartItems.innerHTML = ''; // Clear the existing cart items

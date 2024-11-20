@@ -76,6 +76,15 @@ button[onclick*="removeFromCart"] {
     text-decoration: underline;
     cursor: pointer;
 }
+input[type="number"] {
+    width: 50px;
+    height: 30px;
+    font-size: 14px;
+    text-align: center;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 2px;
+}
 
 button[onclick*="removeFromCart"]:hover {
     color: darkred;

@@ -60,18 +60,50 @@ function removeFromCart(index) {
     // Update the cart display
     updateCartDisplay();
 }
-function checkout() {
+function showCheckoutForm() {
     if (cart.length === 0) {
         alert("Your cart is empty! Add some snacks before checking out.");
         return;
     }
+    // Show the checkout form
+    document.getElementById('checkout-form-container').style.display = 'block';
+}
 
-    const confirmation = confirm(`Your total is ₹${totalPrice.toFixed(2)}. Proceed to checkout?`);
+function cancelCheckout() {
+    // Hide the checkout form
+    document.getElementById('checkout-form-container').style.display = 'none';
+}
+
+function processCheckout(event) {
+    event.preventDefault(); // Prevent the form from refreshing the page
+
+    // Get form values
+    const name = document.getElementById('name').value;
+    const email = document.getElementById('email').value;
+    const address = document.getElementById('address').value;
+    const payment = document.getElementById('payment').value;
+
+    // Simple validation (if needed, as `required` attributes are already used)
+    if (!name || !email || !address || !payment) {
+        alert("Please fill in all the fields.");
+        return;
+    }
+
+    // Confirm and process the order
+    const confirmation = confirm(
+        `Thank you, ${name}! Your order total is ₹${totalPrice.toFixed(2)}. It will be delivered to:\n${address}`
+    );
+
     if (confirmation) {
-        alert("Thank you for your order! Your snacks will be delivered soon.");
-        cart.length = 0; 
+        alert("Your order has been placed successfully!");
+        // Clear the cart
+        cart.length = 0;
         totalPrice = 0;
         updateCartDisplay();
+
+        // Hide the checkout form
+        document.getElementById('checkout-form-container').style.display = 'none';
     }
 }
+
 

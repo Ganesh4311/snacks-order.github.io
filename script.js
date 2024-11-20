@@ -61,3 +61,18 @@ function removeFromCart(index) {
     // Update the cart display
     updateCartDisplay();
 }
+function checkout() {
+    if (cart.length === 0) {
+        alert("Your cart is empty! Add some snacks before checking out.");
+        return;
+    }
+
+    const confirmation = confirm(`Your total is ₹${totalPrice.toFixed(2)}. Proceed to checkout?`);
+    if (confirmation) {
+        alert("Thank you for your order! Your snacks will be delivered soon.");
+        cart.length = 0; 
+        totalPrice = 0;
+        updateCartDisplay();
+    }
+}
+

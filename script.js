@@ -1,6 +1,5 @@
 const cart = [];
 let totalPrice = 0;
-alert("Enjoy your Snacks")
 
 function addToCart(itemName, itemPrice, quantityId) {
     // Fetch the quantity from the input field

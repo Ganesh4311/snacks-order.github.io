@@ -1,40 +1,43 @@
 const cart = [];
 let totalPrice = 0;
 
-function addToCart(itemName, itemPrice) {
-    // Add item to the cart array
-    cart.push({ name: itemName, price: itemPrice });
+function addToCart(itemName, itemPrice, quantityId) {
+    // Fetch the quantity from the input field
+    const quantityElement = document.getElementById(quantityId);
+    if (!quantityElement) {
+        console.error(`Quantity input with ID "${quantityId}" not found.`);
+        return;
+    }
+
+    const quantity = parseInt(quantityElement.value);
+    if (isNaN(quantity) || quantity <= 0) {
+        alert("Please enter a valid quantity.");
+        return;
+    }
+
+    const totalItemPrice = itemPrice * quantity;
+
+    // Add item to the cart
+    cart.push({ name: itemName, price: totalItemPrice, quantity });
 
     // Update the cart display
     updateCartDisplay();
 }
 
-function searchSnacks() {
-    const searchValue = document.getElementById('search').value.toLowerCase();
-    const products = document.querySelectorAll('.product');
-    products.forEach(product => {
-        const snackName = product.querySelector('h3').textContent.toLowerCase();
-        product.style.display = snackName.includes(searchValue) ? '' : 'none';
-    });
-}
-
-function addToCart(itemName, itemPrice, quantityId) {
-    const quantity = document.getElementById(quantityId).value;
-    const totalItemPrice = itemPrice * quantity;
-
-    cart.push({ name: itemName, price: totalItemPrice, quantity });
-    updateCartDisplay();
-}
-
 function updateCartDisplay() {
     const cartItems = document.getElementById('cart-items');
+    if (!cartItems) {
+        console.error('Cart items element with ID "cart-items" not found.');
+        return;
+    }
+
     cartItems.innerHTML = ''; // Clear the existing cart items
 
     cart.forEach((item, index) => {
         // Create a list item for each cart entry
         const li = document.createElement('li');
         li.innerHTML = `
-            ${item.name} - Rs ${item.price.toFixed(2)}
+            ${item.name} - ₹${item.price.toFixed(2)} (x${item.quantity})
             <button onclick="removeFromCart(${index})" style="margin-left: 10px; color: red; background: none; border: none; cursor: pointer;">Remove</button>
         `;
         cartItems.appendChild(li);
@@ -42,7 +45,12 @@ function updateCartDisplay() {
 
     // Update the total price
     totalPrice = cart.reduce((sum, item) => sum + item.price, 0); // Recalculate total price
-    document.getElementById('total').textContent = `Rs ${totalPrice.toFixed(2)}`;
+    const totalElement = document.getElementById('total');
+    if (totalElement) {
+        totalElement.textContent = `₹${totalPrice.toFixed(2)}`;
+    } else {
+        console.error('Total price element with ID "total" not found.');
+    }
 }
 
 function removeFromCart(index) {

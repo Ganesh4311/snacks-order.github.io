@@ -157,6 +157,30 @@
             <p>Total: Rs <span id="total">0.00</span></p>
             <button id="checkout-btn" onclick="showCheckoutForm()">Proceed to Checkout</button>
         </section>
+        <!-- Hidden Checkout Form -->                                                                                            
+<div id="checkout-form-container" style="display: none;">
+    <h2>Checkout</h2>
+    <form id="checkout-form" onsubmit="processCheckout(event)">
+        <label for="name">Name:</label>
+        <input type="text" id="name" required>
+        
+        <label for="email">Email:</label>
+        <input type="email" id="email" required>
+        
+        <label for="address">Address:</label>
+        <textarea id="address" required></textarea>
+        
+        <label for="payment">Payment Method:</label>
+        <select id="payment" required>
+            <option value="card">Credit/Debit Card</option>
+            <option value="cash">Cash on Delivery</option>
+        </select>
+        
+        <button type="submit">Place Order</button>
+        <button type="button" onclick="cancelCheckout()">Cancel</button>
+    </form>
+</div>
+
     </main>
 
     <footer>

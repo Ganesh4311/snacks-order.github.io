@@ -112,7 +112,7 @@
                     <p>Rating: ⭐⭐⭐⭐ (4/5)</p>
                     <p>Rs 175.50</p>
                     <input type="number" id="quantity-Apricot-Delight" value="1" min="1">
-                    <button onclick="addToCart('Apricot Delight', 175.50, 'Apricot-Delight')">Add to Cart</button>
+                    <button onclick="addToCart('Apricot Delight', 175.50, 'quantity-Apricot-Delight')">Add to Cart</button>
                 </div>
             </div>
          </section>
@@ -153,6 +153,7 @@
                 <li>No items in cart</li>
             </ul>
             <p>Total: Rs <span id="total">0.00</span></p>
+            <button id="checkout-btn" onclick="showCheckoutForm()">Proceed to Checkout</button>
         </section>
     </main>
 
